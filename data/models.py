@@ -14,7 +14,7 @@ class Family(models.Model):
     Landmarkchoice = models.TextChoices('Landmarkchoice', 'Talikulam Pallimukk Puthiyangady KunnathPally Nambikadavu Aynichod BhagavanNagar Naseeb Kakkerivalavu Kaithakal Aryampadam Ravinagar AsadNagar College Fathahpalli')
     user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     ward =models.ForeignKey(Ward, on_delete=models.SET_NULL,null=True)
-    card_number= models.IntegerField(primary_key=True)
+    card_number= models.IntegerField()
     name_of_family_head=models.CharField(max_length=60)
     son_of=models.CharField(max_length=60)
     livingfrom=models.IntegerField()
