@@ -16,9 +16,9 @@ def make_head(modeladmin, request, queryset):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['name', 'status','job','age','bloodgroup','family']
+    list_display = ['name', 'status','job','age','blood_group','family']
     list_filter=['family']
-    search_fields=['name','family','bloodgroup']
+    search_fields=['name','family','blood_group']
     ordering = ['family']
     actions = [make_head]
     search_fields = ('name_of_family_head',)
