@@ -29,7 +29,7 @@ class Family(models.Model):
 
     def __str__(self):
     
-        return str(self.card_number) + '   ' + self.name_of_family_head
+        return str(self.ward) + '/' + str(self.card_number) + '   ' + self.name_of_family_head
 
 
     class Meta:
@@ -46,7 +46,7 @@ class Member(models.Model):
    Grouptype = models.TextChoices('Grouptype', 'NA A+ O+ B+ AB+ A- O- B- AB-')
    family = models.ForeignKey(Family, on_delete=models.CASCADE)
    name = models.CharField(max_length=60)
-   age = models.IntegerField(blank=True)
+   age = models.IntegerField(blank=True,null=True)
    education = models.CharField(max_length=60,blank=True,null=True)
    job = models.CharField(max_length=60,blank=True,null=True)
    blood_group=models.CharField(default='NA',choices=Grouptype.choices,max_length=60)
