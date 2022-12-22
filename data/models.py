@@ -46,7 +46,7 @@ class Member(models.Model):
    Grouptype = models.TextChoices('Grouptype', 'NA A+ O+ B+ AB+ A- O- B- AB-')
    family = models.ForeignKey(Family, on_delete=models.CASCADE)
    name = models.CharField(max_length=60)
-   age = models.IntegerField()
+   age = models.IntegerField(blank=True)
    education = models.CharField(max_length=60,blank=True,null=True)
    job = models.CharField(max_length=60,blank=True,null=True)
    blood_group=models.CharField(default='NA',choices=Grouptype.choices,max_length=60)
