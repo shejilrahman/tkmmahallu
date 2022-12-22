@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 
-from .models import Family,Member,Ward
+from .models import Family,Member
 
 
 
@@ -24,5 +24,4 @@ class ArticleAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Family)
-admin.site.register(Ward)
 admin.site.register(Member)

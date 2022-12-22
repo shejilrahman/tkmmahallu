@@ -2,42 +2,33 @@ from secrets import choice
 from django.db import models
 from django.contrib.auth.models import User
 
-class Ward(models.Model):
-    ward=models.CharField(max_length=2)
-
-    def __str__(self):
-        return self.ward
-
-
+MAHALLU_WARD_CHOICES = [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10')]
+PANCHAYATH_WARD_CHOICES = [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10'), ('11', '11'), ('12', '12')]
 class Family(models.Model):
     PostofficeType = models.TextChoices('Postofficetype', 'Talikulam Nattika')
     Landmarkchoice = models.TextChoices('Landmarkchoice', 'Talikulam Pallimukk Puthiyangady KunnathPally Nambikadavu Aynichod BhagavanNagar Naseeb Kakkerivalavu Kaithakal Aryampadam Ravinagar AsadNagar College Fathahpalli')
-    ward =models.ForeignKey(Ward, on_delete=models.SET_NULL,null=True)
-    card_number= models.IntegerField()
+    mahallu_ward = models.CharField(max_length=5, choices=MAHALLU_WARD_CHOICES)
+    mahallu_house_no= models.IntegerField()
+    panchayath=models.CharField(default='Talikulam',choices=PostofficeType.choices,max_length=60)
+    pachayath_ward = models.CharField(max_length=5, choices=PANCHAYATH_WARD_CHOICES)
+    panchayath_house_no= models.IntegerField()
     name_of_family_head=models.CharField(max_length=60)
     son_of=models.CharField(max_length=60)
     living_from=models.IntegerField()
     address = models.CharField(max_length=60)
-    ward_or_houseno=models.CharField(max_length=10)
     landmark=models.CharField(blank=True,choices=Landmarkchoice.choices,max_length=60)
     post_office=models.CharField(default='Talikulam',choices=PostofficeType.choices,max_length=60)
-    panchayath=models.CharField(default='Talikulam',choices=PostofficeType.choices,max_length=60)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-
-
     def __str__(self):
     
-        return str(self.ward) + '/' + str(self.card_number) + '   ' + self.name_of_family_head
+        return str(self.mahallu_ward) + '/' + str(self.mahallu_house_no) + '   ' + self.name_of_family_head
 
 
     class Meta:
         verbose_name_plural = "Families"
     
-
-
-
 STATUS_CHOICES = [('H', 'Family Head'),
 ('M', 'Member'),('W','Wife'),('M','Mother'),('S','Son'),('D','Daughter'),('F','Father'),('O','Son in Law'),('A','Daughter in Law')]
 
