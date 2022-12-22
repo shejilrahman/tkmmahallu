@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-1p*@@xxs-f9^v__5(8tm!v2ce20n+fv0u*_+qf(0%^r!z7wgwv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-env.eba-vzipucgk.us-west-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['django-env.eba-vzipucgk.us-west-2.elasticbeanstalk.com', '127.0.0.1']
 
 
 # Application definition
@@ -111,6 +111,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
