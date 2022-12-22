@@ -20,6 +20,7 @@ ALLOWED_HOSTS = ['tkm-mahallu.eba-8jew3kgk.us-west-2.elasticbeanstalk.com', '127
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts',
     'data.apps.DataConfig',
     'django.contrib.admin',
     'django.contrib.auth',
