@@ -27,10 +27,10 @@ class Family(models.Model):
     son_of=models.CharField(max_length=60)
     living_from=models.IntegerField()
     address = models.CharField(max_length=60)
-    # locality=models.ForeignKey(Locality, on_delete=models.CASCADE, default=Locality.objects.first().pk)
     post_office=models.CharField(default='Talikulam',choices=PostofficeType.choices,max_length=60)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    area=models.ForeignKey(Locality, on_delete=models.SET_NULL, default=Locality.objects.first().pk, null=True)
 
     def __str__(self):
     
