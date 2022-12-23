@@ -103,7 +103,7 @@ class Member(models.Model):
    family = models.ForeignKey(Family, on_delete=models.CASCADE)
    name = models.CharField(max_length=60)
    age = models.IntegerField(blank=True,null=True)
-   dob = models.DateTimeField(blank=True,null=True)
+   dob = models.DateField(blank=True,null=True)
    education = models.CharField(max_length=60,blank=True,null=True)
    religeous_education = models.CharField(max_length=60,blank=True,null=True)
    job = models.CharField(max_length=60,blank=True,null=True)
