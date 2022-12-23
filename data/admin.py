@@ -1,10 +1,8 @@
 
 from django.contrib import admin
 
-from .models import Family,Member
-
-
-
+from .models import Family ,Member
+from data.models import Locality
 
 
 @admin.action(description='Mark selected person as Family head')
@@ -22,6 +20,6 @@ class ArticleAdmin(admin.ModelAdmin):
     search_fields = ('name_of_family_head',)
     raw_id_fields = ('family',)
 
-
 admin.site.register(Family)
 admin.site.register(Member)
+admin.site.register(Locality)

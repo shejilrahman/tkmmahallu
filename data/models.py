@@ -4,6 +4,17 @@ from django.contrib.auth.models import User
 
 MAHALLU_WARD_CHOICES = [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10')]
 PANCHAYATH_WARD_CHOICES = [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'), ('8', '8'), ('9', '9'), ('10', '10'), ('11', '11'), ('12', '12')]
+
+class Locality(models.Model):
+    title = models.CharField(max_length=100, blank=True)
+
+    def __str__(self):
+    
+        return self.title
+
+    class Meta:
+        verbose_name_plural = "Localities"
+
 class Family(models.Model):
     PostofficeType = models.TextChoices('Postofficetype', 'Talikulam Nattika')
     Landmarkchoice = models.TextChoices('Landmarkchoice', 'Talikulam Pallimukk Puthiyangady KunnathPally Nambikadavu Aynichod BhagavanNagar Naseeb Kakkerivalavu Kaithakal Aryampadam Ravinagar AsadNagar College Fathahpalli')
@@ -16,7 +27,7 @@ class Family(models.Model):
     son_of=models.CharField(max_length=60)
     living_from=models.IntegerField()
     address = models.CharField(max_length=60)
-    landmark=models.CharField(blank=True,choices=Landmarkchoice.choices,max_length=60)
+    # locality=models.ForeignKey(Locality, on_delete=models.CASCADE, default=Locality.objects.first().pk)
     post_office=models.CharField(default='Talikulam',choices=PostofficeType.choices,max_length=60)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
@@ -25,12 +36,27 @@ class Family(models.Model):
     
         return str(self.mahallu_ward) + '/' + str(self.mahallu_house_no) + '   ' + self.name_of_family_head
 
-
     class Meta:
         verbose_name_plural = "Families"
     
-STATUS_CHOICES = [('H', 'Family Head'),
-('M', 'Member'),('W','Wife'),('M','Mother'),('S','Son'),('D','Daughter'),('F','Father'),('O','Son in Law'),('A','Daughter in Law')]
+STATUS_CHOICES = [
+    ('H', 'Family Head'),
+    ('AL','Auncle'),
+    ('AY','Aunty'),
+    ('BL','Brother in Law'),
+    ('D','Daughter'),
+    ('DL','Daughter in Law'),
+    ('F','Father'),
+    ('GD','Grand Daughter'),
+    ('GF','Grand Father'),
+    ('GM','Grand Mother'),
+    ('GS','Grand Son'),
+    ('M','Mother'),
+    ('MR', 'Member'),
+    ('S','Son'),
+    ('SL','Son in Law'),    
+    ('SS','Sister in Law'),
+    ('W','Wife'),]
 
 class Member(models.Model):
    Choice = models.TextChoices('Choice', 'Yes No')
